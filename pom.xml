@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
+    <groupId>org.wixtoolset</groupId>
+    <artifactId>wix-toolset</artifactId>
+    <version>3.7.RC</version>
+    <packaging>jar</packaging>
+
+    <name>WiX Toolset</name>
+    <url>http://wixtoolset.org/</url>
+    <description>
+        The WiX toolset builds Windows installation packages from XML source code. The toolset integrates seamlessly into build processes.
+    </description>
+    <inceptionYear>2004</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Microsoft Reciprocal License (Ms-RL)</name>
+            <url>http://wix.codeplex.com/license</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+
+        <developer>
+            <id>robmensching</id>
+            <name>Rob Mensching</name>
+            <email>rob@robmensching.com</email>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+        </developer>
+
+        <developer>
+            <id>zonski</id>
+            <name>Daniel Zwolenski</name>
+            <email>zonski@gmail.com</email>
+            <roles>
+                <role>Maven Deployer</role>
+            </roles>
+        </developer>
+
+    </developers>
+
+    <scm>
+        <url>https://hg.codeplex.com/wix</url>
+    </scm>
+
+    <issueManagement>
+        <system>Sourceforge</system>
+        <url>http://sourceforge.net/p/wix/bugs/</url>
+    </issueManagement>
+
+    <profiles>
+        <profile>
+            <id>release-sign-artifacts</id>
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.2</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <mavenExecutorId>forked-path</mavenExecutorId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>
