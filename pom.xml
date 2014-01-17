@@ -1,320 +1,234 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+  <groupId>org.wixtoolset</groupId>
+  <artifactId>wix-toolset-parent</artifactId>
+  <version>3.7-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-	<groupId>org.wixtoolset</groupId>
-	<artifactId>wix-toolset</artifactId>
-	<version>3.7.RC</version>
-	<packaging>jar</packaging>
-
-	<name>WiX Toolset</name>
-	<url>http://wixtoolset.org/</url>
-	<description>
+  <name>WiX Toolset Maven parent/aggregate</name>
+  <url>http://wixtoolset.org/</url>
+  <description>
 The WiX toolset builds Windows installation packages from XML source code. 
-The toolset integrates seamlessly into build processes.</description>
-	<inceptionYear>2004</inceptionYear>
+The toolset integrates seamlessly into build processes.
+This is a binary artifact capture.</description>
+  <inceptionYear>2004</inceptionYear>
 
-	<organization>
-		<url>http://www.outercurve.org/</url>
-		<name>Outercurve Foundation</name>
-	</organization>
+  <organization>
+    <url>http://www.outercurve.org/</url>
+    <name>Outercurve Foundation</name>
+  </organization>
 
-	<licenses>
-		<license>
-			<name>Microsoft Reciprocal License (Ms-RL)</name>
-			<url>http://wix.codeplex.com/license</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>Microsoft Reciprocal License (Ms-RL)</name>
+      <url>http://wix.codeplex.com/license</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-	<developers>
+  <developers>
+    <developer>
+      <id>robmensching</id>
+      <name>Rob Mensching</name>
+      <email>rob@robmensching.com</email>
+      <roles>
+        <role>Project Lead</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>zonski</id>
+      <name>Daniel Zwolenski</name>
+      <email>zonski@gmail.com</email>
+      <roles>
+        <role>Maven Deployer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>GregDomjan</id>
+      <name>Greg Domjan</name>
+      <roles>
+        <role>Maven Deployer</role>
+      </roles>
+    </developer>
+  </developers>
 
-		<developer>
-			<id>robmensching</id>
-			<name>Rob Mensching</name>
-			<email>rob@robmensching.com</email>
-			<roles>
-				<role>Project Lead</role>
-			</roles>
-		</developer>
+  <scm>
+    <url>https://github.com/zonski/wix-maven</url>
+    <connection>scm:git:git://github.com/zonski/wix-maven</connection>
+    <developerConnection>scm:git:git@github.com:zonski/wix-maven</developerConnection>
+  </scm>
 
-		<developer>
-			<id>zonski</id>
-			<name>Daniel Zwolenski</name>
-			<email>zonski@gmail.com</email>
-			<roles>
-				<role>Maven Deployer</role>
-			</roles>
-		</developer>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/zonski/wix-maven/issues</url>
+  </issueManagement>
+  <!-- Source
+    SCM https://hg.codeplex.com/wix
+    <issueManagement>
+    <system>Sourceforge</system>
+    <url>http://sourceforge.net/p/wix/bugs/</url>
+    </issueManagement>
+  -->
 
-	</developers>
+  <properties> <!-- The &Build value seems to change daily... -->
+    <wix.downloadPath>src/download</wix.downloadPath>
+    <wix.downloadFile>${wix.downloadPath}/wix-bianries.zip</wix.downloadFile>
+    <zip.unpack>${basedir}/target/unpack</zip.unpack>
+  </properties>
 
-	<scm>
-		<url>https://hg.codeplex.com/wix</url>
-	</scm>
+  <modules>
+    <module>wix-toolset</module>
+    <module>maven/wix-toolset</module>
+    <module>maven/sdk-toolset</module>
+  </modules>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.8</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.7</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>2.6</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
-	<issueManagement>
-		<system>Sourceforge</system>
-		<url>http://sourceforge.net/p/wix/bugs/</url>
-	</issueManagement>
+  <profiles>
+    <profile>
+      <id>nar</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>nar/dutil</module>
+        <module>nar/dutil-vc11</module>
+        <module>nar/balutil</module>
+        <module>nar/deputil</module>
+        <module>nar/wcautil</module>
+        <module>nar/wcautil-vc11</module>
+      </modules>
+      <properties>
+        <nar.src.noarch>src/nar/resources/noarch/include</nar.src.noarch>
+        <nar.src.x64>src/nar/resources/aol/amd64-Windows-msvc/lib/static</nar.src.x64>
+        <nar.src.x86>src/nar/resources/aol/x86-Windows-msvc/lib/static</nar.src.x86>
+      </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>com.github.maven-nar</groupId>
+              <artifactId>nar-maven-plugin</artifactId>
+              <version>3.0.0</version>
+          <!-- <extensions>true</extensions> -->
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>npanday</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules>
+        <module>npanday/wix</module>
+      </modules>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.npanday.plugins</groupId>
+              <artifactId>custom-lifecycle-maven-plugin</artifactId>
+              <version>1.4.0-incubating</version>
+          <!-- <extensions>true</extensions> -->
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
 
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.2</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<mavenExecutorId>forked-path</mavenExecutorId>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    </profile>
+    <profile>
+      <id>download</id>
+      <!-- To update the source
+      Update the download URL property by finding it on the download page at  http://wixtoolset.org/releases/v3.7/stable
+      mvn -N generate-sources -Pdownload -->
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=582220&amp;FileTime=130008656367470000&amp;Build=20859</wix.downloadURL>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.7</version>
+            <executions>
+              <execution>
+                <id>download and prepare</id>
+                <phase>generate-sources</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target name="download">
+                <!--
+                  need a method of getting the download, first to get download 
+                  at all, then more dynamic based on version
 
-	<properties>
-		<wix.downloadPath>${basedir}/target/download</wix.downloadPath>
-		<wix.downloadFile>${wix.downloadPath}/wix-bianries.zip</wix.downloadFile>
-		<wix.unpack>${basedir}/target/unpack</wix.unpack>
-	</properties>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>download and prepare</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<configuration>
-							<target name="download and prepare">
-								<!--
-								need a method of getting the download, first to get download at all, then more dynamic based on version
-									http://wix.codeplex.com/downloads/get/534607
-									time based redirect to
-									POST http://wix.codeplex.com/releases/captureDownload
-									http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&DownloadId=534607&FileTime=129979520837900000&Build=19727
-								<taskdef
-									resource="net/sf/antcontrib/antlib.xml"
-									classpathref="maven.plugin.classpath" />
-
-								<post
-									to="http://wix.codeplex.com/releases/captureDownload"
-									property="wix.downloadURL"
-									failonerror="true">
-									<prop
-										name="fileid"
-										value="534607" />
-									<prop
-										name="clickoncepath"
-										value="" />
-									<prop
-										name="redirectToAds"
-										value="false" />
-								</post>
-				<dependencies>
-					<dependency>
-						<groupId>ant-contrib</groupId>
-						<artifactId>ant-contrib</artifactId>
-						<version>1.0b3</version>
-						<exclusions>
-							<exclusion>
-								<groupId>ant</groupId>
-								<artifactId>ant</artifactId>
-							</exclusion>
-						</exclusions>
-					</dependency>
-				</dependencies>
-
-								${wix.downloadURL}
-								-->
-								<mkdir dir="${wix.downloadPath}" />
-								<get
-									src="http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=534607&amp;FileTime=129979520837900000&amp;Build=19727"
-									dest="${wix.downloadFile}"
-									usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
-								<unzip
-									src="${wix.downloadFile}"
-									dest="${wix.unpack}"
-									overwrite="false" />
-							</target>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.5</version>
-				<executions>
-					<execution>
-						<id>resources</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/classes/bin</outputDirectory>
-							<resources>
-								<resource>
-									<filtering>false</filtering>
-									<directory>${wix.unpack}</directory>
-									<includes>
-										<include>*.exe</include>
-										<include>*.exe.config</include>
-										<include>*.dll</include>
-										<include>*.cub</include>
-									</includes>
-									<excludes>
-										<exclude>Wix*Extension.dll</exclude>
-										<exclude>Votiv*.dll</exclude>
-									</excludes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-					
-	<!--  attaching the extensions, standard format Wix(.*)Extension.dll, should automate this selection  -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.7</version>
-				<executions>
-					<execution>
-						<id>attach-artifacts</id>
-						<phase>package</phase>
-						<goals>
-							<goal>attach-artifact</goal>
-						</goals>
-						<configuration>
-							<artifacts>
-								<artifact>
-									<file>${wix.unpack}/WixBalExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixBalExtension</classifier>
-								</artifact>
-								<!-- not in RC?
-								<artifact>
-									<file>${wix.unpack}/WixComPlusExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixComPlusExtension</classifier>
-								</artifact>  -->
-								<artifact>
-									<file>${wix.unpack}/WixDependencyExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixDependencyExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixDifxAppExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixDifxAppExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixDirectXExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixDirectXExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixFirewallExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixFirewallExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixGamingExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixGamingExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixIISExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixIISExtension</classifier>
-								</artifact>
-								<!-- not in RC?
-								<artifact>
-									<file>${wix.unpack}/WixLuxExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixLuxExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixMsmqExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixMsmqExtension</classifier>
-								</artifact>
-								-->
-								<artifact>
-									<file>${wix.unpack}/WixNetFxExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixNetFxExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixPSExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixPSExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixSqlExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixSqlExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixTagExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixTagExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixUIExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixUIExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixUtilExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixUtilExtension</classifier>
-								</artifact>
-								<artifact>
-									<file>${wix.unpack}/WixVSExtension.dll</file>
-									<type>wixext</type>
-									<classifier>WixVSExtension</classifier>
-								</artifact>
-							</artifacts>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+                  ie. https://wix.codeplex.com/downloads/get/582220 URL for 3.7
+                  time based page update to POST http://wix.codeplex.com/releases/captureDownload
+                  then redirect to actual download like  http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&DownloadId=534607&FileTime=129979520837900000&Build=19727
+                  <taskdef resource="net/sf/antcontrib/antlib.xml"
+                    classpathref="maven.plugin.classpath" />
+                  <post to="http://wix.codeplex.com/releases/captureDownload"
+                    property="wix.downloadURL" failonerror="true">
+                    <prop name="fileid" value="534607" />
+                    <prop name="clickoncepath" value="" />
+                    <prop name="redirectToAds" value="false" />
+                  </post>
+                  <dependencies>
+                    <dependency>
+                      <groupId>ant-contrib</groupId>
+                      <artifactId>ant-contrib</artifactId>
+                      <version>1.0b3</version>
+                      <exclusions>
+                        <exclusion>
+                          <groupId>ant</groupId>
+                          <artifactId>ant</artifactId>
+                        </exclusion>
+                      </exclusions>
+                    </dependency>
+                  </dependencies>
+                  ${wix.downloadURL} -->
+                    <mkdir dir="${wix.downloadPath}" />
+                    <get src="${wix.downloadURL}" dest="${wix.downloadFile}"
+                      usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
