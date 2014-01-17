@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.wixtoolset</groupId>
+    <artifactId>wix-toolset-parent</artifactId>
+    <version>3.7-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <groupId>org.wixtoolset.maven</groupId>
+  <artifactId>wix-toolset</artifactId>
+  <version>3.7-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>WiX Toolset Maven</name>
+  <description>Bundle of command line executable tools for building WiX projects for use in Maven Plugins</description>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>prepare</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target name="prepare modules">
+                <echo>../../${wix.downloadFile}</echo>
+                <unzip dest="${zip.unpack}" overwrite="false"
+                  src="../../${wix.downloadFile}">
+                  <patternset>
+                    <include name="*" />
+                    <include name="x86/*" />
+                  </patternset>
+                </unzip>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>resources</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/classes/bin</outputDirectory>
+              <resources>
+                <resource>
+                  <filtering>false</filtering>
+                  <directory>${zip.unpack}</directory>
+                  <includes>
+                    <include>x86/burn.exe</include>
+                    <include>*.exe</include>
+                    <include>*.exe.config</include>
+                    <include>*.dll</include>
+                    <include>*.cub</include>
+                  </includes>
+                  <excludes>
+                    <exclude>Wix*Extension.dll</exclude>
+                    <exclude>Votiv*.dll</exclude>
+                  </excludes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- attaching the extensions, standard format Wix(.*)Extension.dll,
+        should automate this selection -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${zip.unpack}/WixBalExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixBalExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixDependencyExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixDependencyExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixDifxAppExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixDifxAppExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixDirectXExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixDirectXExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixFirewallExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixFirewallExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixGamingExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixGamingExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixIISExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixIISExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixNetFxExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixNetFxExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixPSExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixPSExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixSqlExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixSqlExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixTagExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixTagExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixUIExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixUIExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixUtilExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixUtilExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixVSExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixVSExtension</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
