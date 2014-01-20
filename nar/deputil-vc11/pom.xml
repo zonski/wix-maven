@@ -11,14 +11,14 @@
   </parent>
 
   <groupId>org.wixtoolset.sdk.nar</groupId>
-  <artifactId>deputil</artifactId>
+  <artifactId>deputil-vc11</artifactId>
   <packaging>nar</packaging>
-  <name>WiX DepUtil</name>
+  <name>WiX DepUtil (vc11)</name>
 
   <dependencies>
     <dependency>
       <groupId>org.wixtoolset.sdk.nar</groupId>
-      <artifactId>dutil</artifactId>
+      <artifactId>dutil-vc11</artifactId>
       <version>3.7-SNAPSHOT</version>
       <type>nar</type>
     </dependency>
@@ -70,12 +70,8 @@
                     <include name="sdk/vs*/**/deputil*" />
                   </patternset>
                   <mapper>
-                    <mapper type="regexp" from="^sdk/vs2008/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc9/\2" />
-                    <mapper type="regexp" from="^sdk/vs2010/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc10/\2" />
                     <mapper type="regexp" from="^sdk/vs2012/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc11/\2" />
+                      to="sdk/\1/\2" />
                   </mapper>
                 </unzip>
               </target>
@@ -93,7 +89,7 @@
 					<!-- x86 x64 -->
 					<!-- msvc -->
           <resourcesCopyAOL>false</resourcesCopyAOL>
-          <output>msvc9/deputil</output>
+          <output>deputil</output>
           <libraries>
             <library>
               <type>static</type>

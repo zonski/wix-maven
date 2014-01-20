@@ -11,18 +11,10 @@
   </parent>
 
   <groupId>org.wixtoolset.sdk.nar</groupId>
-  <artifactId>deputil</artifactId>
+  <artifactId>dutil-vc10</artifactId>
   <packaging>nar</packaging>
-  <name>WiX DepUtil</name>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.wixtoolset.sdk.nar</groupId>
-      <artifactId>dutil</artifactId>
-      <version>3.7-SNAPSHOT</version>
-      <type>nar</type>
-    </dependency>
-  </dependencies>
+  <name>WiX DUtil (vc10)</name>
+  <description>Utility functions for use in WiX Custom Actions (CA) or Bootstrap Applications (BA)</description>
 
   <build>
     <resources>
@@ -31,8 +23,13 @@
         <filtering>false</filtering>
         <directory>${zip.unpack}/sdk/inc</directory>
         <includes>
-          <include>deputil.h</include>
+          <include>*.h</include>
         </includes>
+        <excludes>
+          <exclude>balutil.h</exclude>
+          <exclude>deputil.h</exclude>
+          <exclude>wcautil.h</exclude>
+        </excludes>
       </resource>
       <resource>
         <targetPath>${project.basedir}/${nar.src.x86}</targetPath>
@@ -67,15 +64,11 @@
                 <unzip dest="${zip.unpack}" overwrite="false"
                   src="../../${wix.downloadFile}">
                   <patternset>
-                    <include name="sdk/vs*/**/deputil*" />
+                    <include name="sdk/vs*/**/dutil*" />
                   </patternset>
                   <mapper>
-                    <mapper type="regexp" from="^sdk/vs2008/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc9/\2" />
                     <mapper type="regexp" from="^sdk/vs2010/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc10/\2" />
-                    <mapper type="regexp" from="^sdk/vs2012/lib/(.*)/(.*\.lib)"
-                      to="sdk/\1/msvc11/\2" />
+                      to="sdk/\1/\2" />
                   </mapper>
                 </unzip>
               </target>
@@ -93,7 +86,7 @@
 					<!-- x86 x64 -->
 					<!-- msvc -->
           <resourcesCopyAOL>false</resourcesCopyAOL>
-          <output>msvc9/deputil</output>
+          <output>dutil</output>
           <libraries>
             <library>
               <type>static</type>

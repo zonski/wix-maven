@@ -93,7 +93,7 @@
 					<!-- x86 x64 -->
 					<!-- msvc -->
           <resourcesCopyAOL>false</resourcesCopyAOL>
-          <output>balutil</output>
+          <output>msvc9/balutil</output>
           <libraries>
             <library>
               <type>static</type>
