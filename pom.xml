@@ -89,6 +89,7 @@ This is a binary artifact capture.</description>
   <modules>
     <module>wix-toolset</module>
     <module>maven/wix-toolset</module>
+    <module>maven/wix-bootstrap</module>
     <module>maven/sdk-toolset</module>
   </modules>
   <build>
@@ -119,10 +120,20 @@ This is a binary artifact capture.</description>
       </activation>
       <modules>
         <module>nar/dutil</module>
+        <module>nar/dutil-vc9</module>
+        <module>nar/dutil-vc10</module>
         <module>nar/dutil-vc11</module>
         <module>nar/balutil</module>
+        <module>nar/balutil-vc9</module>
+        <module>nar/balutil-vc10</module>
+        <module>nar/balutil-vc11</module>
         <module>nar/deputil</module>
+        <module>nar/deputil-vc9</module>
+        <module>nar/deputil-vc10</module>
+        <module>nar/deputil-vc11</module>
         <module>nar/wcautil</module>
+        <module>nar/wcautil-vc9</module>
+        <module>nar/wcautil-vc10</module>
         <module>nar/wcautil-vc11</module>
       </modules>
       <properties>

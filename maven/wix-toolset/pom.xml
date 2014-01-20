@@ -20,6 +20,14 @@
   <name>WiX Toolset Maven</name>
   <description>Bundle of command line executable tools for building WiX projects for use in Maven Plugins</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>org.wixtoolset.maven</groupId>
+      <artifactId>wix-bootstrap</artifactId>
+      <version>3.7-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  
   <build>
     <plugins>
       <plugin>
@@ -38,7 +46,6 @@
                   src="../../${wix.downloadFile}">
                   <patternset>
                     <include name="*" />
-                    <include name="x86/*" />
                   </patternset>
                 </unzip>
               </target>
@@ -63,7 +70,6 @@
                   <filtering>false</filtering>
                   <directory>${zip.unpack}</directory>
                   <includes>
-                    <include>x86/burn.exe</include>
                     <include>*.exe</include>
                     <include>*.exe.config</include>
                     <include>*.dll</include>
