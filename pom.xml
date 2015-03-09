@@ -12,7 +12,7 @@
 
   <groupId>org.wixtoolset</groupId>
   <artifactId>wix-toolset-parent</artifactId>
-  <version>3.7-SNAPSHOT</version>
+  <version>3.8-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>WiX Toolset Maven parent/aggregate</name>
@@ -82,7 +82,7 @@ This is a binary artifact capture.</description>
 
   <properties> <!-- The &Build value seems to change daily... -->
     <wix.downloadPath>src/download</wix.downloadPath>
-    <wix.downloadFile>${wix.downloadPath}/wix-bianries.zip</wix.downloadFile>
+    <wix.downloadFile>${wix.downloadPath}/wix-binaries.zip</wix.downloadFile>
     <zip.unpack>${basedir}/target/unpack</zip.unpack>
   </properties>
 
@@ -123,23 +123,29 @@ This is a binary artifact capture.</description>
         <module>nar/dutil-vc9</module>
         <module>nar/dutil-vc10</module>
         <module>nar/dutil-vc11</module>
+        <module>nar/dutil-vc12</module>
         <module>nar/balutil</module>
         <module>nar/balutil-vc9</module>
         <module>nar/balutil-vc10</module>
         <module>nar/balutil-vc11</module>
+        <module>nar/balutil-vc12</module>
         <module>nar/deputil</module>
         <module>nar/deputil-vc9</module>
         <module>nar/deputil-vc10</module>
         <module>nar/deputil-vc11</module>
+        <module>nar/deputil-vc12</module>
         <module>nar/wcautil</module>
         <module>nar/wcautil-vc9</module>
         <module>nar/wcautil-vc10</module>
         <module>nar/wcautil-vc11</module>
+        <module>nar/wcautil-vc12</module>
       </modules>
       <properties>
-        <nar.src.noarch>src/nar/resources/noarch/include</nar.src.noarch>
-        <nar.src.x64>src/nar/resources/aol/amd64-Windows-msvc/lib/static</nar.src.x64>
-        <nar.src.x86>src/nar/resources/aol/x86-Windows-msvc/lib/static</nar.src.x86>
+        <nar.test.version>3.0.0</nar.test.version>
+        <nar.src>${project.build.directory}\nar\${project.artifactId}-${project.version}</nar.src>
+        <nar.src.noarch>${nar.src}-noarch\include</nar.src.noarch>
+        <nar.src.x86>${nar.src}-x86-Windows-msvc-static\lib\x86-Windows-msvc\static</nar.src.x86>
+        <nar.src.x64>${nar.src}-amd64-Windows-msvc-static\lib\amd64-Windows-msvc\static</nar.src.x64>
       </properties>
       <build>
         <pluginManagement>
@@ -148,7 +154,6 @@ This is a binary artifact capture.</description>
               <groupId>com.github.maven-nar</groupId>
               <artifactId>nar-maven-plugin</artifactId>
               <version>3.0.0</version>
-          <!-- <extensions>true</extensions> -->
             </plugin>
           </plugins>
         </pluginManagement>
@@ -162,6 +167,9 @@ This is a binary artifact capture.</description>
       <modules>
         <module>npanday/wix</module>
       </modules>
+      <properties>
+        <npanday.test.version>1.4.0-incubating</npanday.test.version> <!-- 1.5.0-incutbation-SNAPSHOT -->
+      </properties>
       <build>
         <pluginManagement>
           <plugins>
@@ -169,7 +177,6 @@ This is a binary artifact capture.</description>
               <groupId>org.apache.npanday.plugins</groupId>
               <artifactId>custom-lifecycle-maven-plugin</artifactId>
               <version>1.4.0-incubating</version>
-          <!-- <extensions>true</extensions> -->
             </plugin>
           </plugins>
         </pluginManagement>

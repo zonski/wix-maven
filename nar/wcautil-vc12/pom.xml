@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.wixtoolset</groupId>
@@ -8,14 +9,42 @@
     <version>3.8-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
-  
-  <groupId>org.wixtoolset.sdk.npanday</groupId>
-  <artifactId>wix</artifactId>
-  <packaging>library</packaging>
-  <name>WiX DotNet wix Reference</name>
+
+  <groupId>org.wixtoolset.sdk.nar</groupId>
+  <artifactId>wcautil-vc12</artifactId>
+  <packaging>nar</packaging>
+  <name>WiX WCAUtil (vc12)</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.wixtoolset.sdk.nar</groupId>
+      <artifactId>dutil-vc12</artifactId>
+      <version>3.8-SNAPSHOT</version>
+      <type>nar</type>
+    </dependency>
+  </dependencies>
 
   <build>
-    <finalName>${project.artifactId}</finalName>
+    <resources>
+      <resource>
+        <targetPath>${nar.src.noarch}</targetPath>
+        <filtering>false</filtering>
+        <directory>${zip.unpack}/sdk/inc</directory>
+        <includes>
+          <include>wcautil.h</include>
+        </includes>
+      </resource>
+      <resource>
+        <targetPath>${nar.src.x86}</targetPath>
+        <filtering>false</filtering>
+        <directory>${zip.unpack}/sdk/x86</directory>
+      </resource>
+      <resource>
+        <targetPath>${nar.src.x64}</targetPath>
+        <filtering>false</filtering>
+        <directory>${zip.unpack}/sdk/x64</directory>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-antrun-plugin</artifactId>
@@ -29,14 +58,20 @@
             <configuration>
               <target name="prepare modules">
                 <echo>../../${wix.downloadFile}</echo>
-                <unzip dest="${project.build.directory}" overwrite="false"
+                <unzip dest="${zip.unpack}" overwrite="false"
                   src="../../${wix.downloadFile}">
                   <patternset>
-                    <include name="wix.dll" />
+                    <include name="sdk/inc/**/*" />
+                  </patternset>
+                </unzip>
+                <unzip dest="${zip.unpack}" overwrite="false"
+                  src="../../${wix.downloadFile}">
+                  <patternset>
+                    <include name="sdk/vs*/**/wcautil*" />
                   </patternset>
                   <mapper>
-                    <mapper type="regexp" from="(.*)\.dll"
-                      to="\1.dll" />
+                    <mapper type="regexp" from="^sdk/vs2013/lib/(.*)/(.*\.lib)"
+                      to="sdk/\1/\2" />
                   </mapper>
                 </unzip>
               </target>
@@ -44,11 +79,23 @@
           </execution>
         </executions>
       </plugin>
-      
+
       <plugin>
-        <groupId>org.apache.npanday.plugins</groupId>
-        <artifactId>custom-lifecycle-maven-plugin</artifactId>
+        <groupId>com.github.maven-nar</groupId>
+        <artifactId>nar-maven-plugin</artifactId>
         <extensions>true</extensions>
+        <configuration>
+					<!-- Windows -->
+					<!-- x86 x64 -->
+					<!-- msvc -->
+          <resourcesCopyAOL>false</resourcesCopyAOL>
+          <output>wcautil</output>
+          <libraries>
+            <library>
+              <type>static</type>
+            </library>
+          </libraries>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -93,4 +140,5 @@
       </build>
     </profile>
   </profiles>
+  
 </project>

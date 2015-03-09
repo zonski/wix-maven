@@ -42,6 +42,7 @@ under the License.
       <plugin>
         <groupId>com.github.maven-nar</groupId>
         <artifactId>nar-maven-plugin</artifactId>
+        <version>@nar.test.version@</version>
         <extensions>true</extensions>
         <configuration>
           <os>Windows</os>

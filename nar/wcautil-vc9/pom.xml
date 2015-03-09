@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.7-SNAPSHOT</version>
+    <version>3.8-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.wixtoolset.sdk.nar</groupId>
       <artifactId>dutil-vc9</artifactId>
-      <version>3.7-SNAPSHOT</version>
+      <version>3.8-SNAPSHOT</version>
       <type>nar</type>
     </dependency>
   </dependencies>
@@ -27,7 +27,7 @@
   <build>
     <resources>
       <resource>
-        <targetPath>${project.basedir}/${nar.src.noarch}</targetPath>
+        <targetPath>${nar.src.noarch}</targetPath>
         <filtering>false</filtering>
         <directory>${zip.unpack}/sdk/inc</directory>
         <includes>
@@ -35,12 +35,12 @@
         </includes>
       </resource>
       <resource>
-        <targetPath>${project.basedir}/${nar.src.x86}</targetPath>
+        <targetPath>${nar.src.x86}</targetPath>
         <filtering>false</filtering>
         <directory>${zip.unpack}/sdk/x86</directory>
       </resource>
       <resource>
-        <targetPath>${project.basedir}/${nar.src.x64}</targetPath>
+        <targetPath>${nar.src.x64}</targetPath>
         <filtering>false</filtering>
         <directory>${zip.unpack}/sdk/x64</directory>
       </resource>

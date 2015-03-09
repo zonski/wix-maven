@@ -23,33 +23,43 @@ under the License.
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.wixtoolset.sdk.tests</groupId>
-  <artifactId>it001-wixext</artifactId>
-  <packaging>library</packaging>
+  <artifactId>it003-wixca-native</artifactId>
+  <packaging>nar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>WixExtension Sample using DotNet WindowsInstallerXml Reference</name>
+  <name>WiX Custom Action example using wcautil</name>
 
   <dependencies>
     <dependency>
-      <groupId>org.wixtoolset.sdk.npanday</groupId>
+      <groupId>org.wixtoolset.sdk.nar</groupId>
       <artifactId>@project.artifactId@</artifactId>
       <version>@project.version@</version>
-      <type>library</type>
+      <type>nar</type>
     </dependency>
   </dependencies>
 
   <build>
-    <sourceDirectory>${project.basedir}/src/main/csharp</sourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.apache.npanday.plugins</groupId>
-        <artifactId>maven-compile-plugin</artifactId>
-        <version>@npanday.test.version@</version>
+        <groupId>com.github.maven-nar</groupId>
+        <artifactId>nar-maven-plugin</artifactId>
+        <version>@nar.test.version@</version>
         <extensions>true</extensions>
+        <configuration>
+          <os>Windows</os>
+          <architecture>x86</architecture>
+          <!-- todo: amd64 x86-->
+          <!-- msvc  9/10/11 -->
+          <linker>
+            <name>msvc</name>
+            <sysLibSet>msi:shared,Advapi32:shared,User32:shared,Version:shared,Shell32:shared</sysLibSet>
+          </linker>
+          <libraries>
+            <library>
+              <type>shared</type>
+            </library>
+          </libraries>
+        </configuration>
       </plugin>
-      <!-- TODO: ?
-       remove precompiled messages.cs/messages.resources
-       add in maven plugin that uses org.wixtoolset.maven:sdk-toolset to compile data/messages.xml 
-        -->
     </plugins>
   </build>
 
