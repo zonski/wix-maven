@@ -28,5 +28,6 @@ For integration tests requires
     ie.   
     mvn install:install-file -DgroupId=NUnit -DartifactId=NUnit.Framework -Dversion=2.2.8.0 -Dpackaging=library "-Dfile=C:\Program Files (x86)\NUnit 2.2.8\bin\framework\nunit.framework.dll"
  *  npanday is present in local repo, or somebody to help fix the src/it/settings.xml   custom-lifecycle is used in packaging, however maven-compile is needed for IT
-
+ *  it002-wixca includes a NUnit test which requires nunit-console otherwise error "'nunit-console' is not recognized as an internal or external command"
+ 
 Also works with 1.5.0-incubating-SNAPSHOT

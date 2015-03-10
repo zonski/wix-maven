@@ -170,6 +170,13 @@ This is a binary artifact capture.</description>
       </activation>
       <modules>
         <module>npanday/wix</module>
+        <module>npanday/Microsoft.Deployment.Compression</module>
+        <module>npanday/Microsoft.Deployment.Compression.Cab</module>
+        <module>npanday/Microsoft.Deployment.Compression.Zip</module>
+        <module>npanday/Microsoft.Deployment.Resources</module>
+        <module>npanday/Microsoft.Deployment.WindowsInstaller</module>
+        <module>npanday/Microsoft.Deployment.WindowsInstaller.Linq</module>
+        <module>npanday/Microsoft.Deployment.WindowsInstaller.Package</module>
       </modules>
       <properties>
         <npanday.test.version>1.4.0-incubating</npanday.test.version> <!-- 1.5.0-incutbation-SNAPSHOT -->
@@ -181,6 +188,34 @@ This is a binary artifact capture.</description>
               <groupId>org.apache.npanday.plugins</groupId>
               <artifactId>custom-lifecycle-maven-plugin</artifactId>
               <version>1.4.0-incubating</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>prepare-npanday-sdk</id>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <target name="prepare modules">
+                      <echo>../../${wix.downloadFile}</echo>
+                      <unzip dest="${project.build.directory}" overwrite="false"
+                        src="../../${wix.downloadFile}">
+                        <patternset>
+                          <include name="sdk/${project.artifactId}.dll" />
+                          <include name="sdk/${project.artifactId}.xml" />
+                        </patternset>
+                        <mapper>
+                          <mapper type="regexp" from="sdk/(.*)"
+                            to="\1" />
+                        </mapper>
+                      </unzip>
+                    </target>
+                  </configuration>
+                </execution>
+              </executions>
             </plugin>
           </plugins>
         </pluginManagement>
