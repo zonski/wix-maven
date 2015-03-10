@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.8-SNAPSHOT</version>
+    <version>3.9-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   
   <groupId>org.wixtoolset.sdk.npanday</groupId>
   <artifactId>wix</artifactId>
-  <packaging>library</packaging>
+  <packaging>dotnet-library</packaging>
   <name>WiX DotNet wix Reference</name>
 
   <build>
@@ -21,7 +21,7 @@
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
-            <id>prepare</id>
+            <id>prepare-npanday</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>run</goal>
@@ -32,12 +32,9 @@
                 <unzip dest="${project.build.directory}" overwrite="false"
                   src="../../${wix.downloadFile}">
                   <patternset>
-                    <include name="wix.dll" />
+                    <include name="${project.artifactId}.dll" />
+                    <include name="${project.artifactId}.xml" />
                   </patternset>
-                  <mapper>
-                    <mapper type="regexp" from="(.*)\.dll"
-                      to="\1.dll" />
-                  </mapper>
                 </unzip>
               </target>
             </configuration>
