@@ -15,14 +15,13 @@
   <name>WiX Toolset Full</name>
   <url>http://wixtoolset.org/</url>
 
-  <scm>
-    <url>https://hg.codeplex.com/wix</url>
-  </scm>
-
-  <issueManagement>
-    <system>Sourceforge</system>
-    <url>http://sourceforge.net/p/wix/bugs/</url>
-  </issueManagement>
+  <!-- Source
+    SCM https://github.com/wixtoolset/wix3/tree/wix39r2rtm
+    <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/wixtoolset/issues/issues</url>
+    </issueManagement>
+  -->
   
   <build>
     <plugins>
