@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.9-SNAPSHOT</version>
+    <version>3.9.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   
@@ -18,7 +18,7 @@
     <dependency>
       <groupId>org.wixtoolset.sdk.npanday</groupId>
       <artifactId>Microsoft.Deployment.WindowsInstaller</artifactId>
-      <version>3.9-SNAPSHOT</version>
+      <version>3.9.2-SNAPSHOT</version>
       <type>dotnet-library</type>
     </dependency>
   </dependencies>

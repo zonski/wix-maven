@@ -8,13 +8,13 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.9-SNAPSHOT</version>
+    <version>3.9.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.wixtoolset.maven</groupId>
   <artifactId>wix-bootstrap</artifactId>
-  <version>3.9-SNAPSHOT</version>
+  <version>3.9.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>WiX Toolset Maven burn bootstrap application</name>
@@ -38,6 +38,12 @@
                   src="../../${wix.downloadFile}">
                   <patternset>
                     <include name="x86/*" />
+                  </patternset>
+                </unzip>
+				<unzip dest="${project.build.directory}/classes/bin" overwrite="false"
+                  src="../../${wix.downloadFile.debug}">
+                  <patternset>
+                    <include name="pdbs/x86/burn.pdb" />
                   </patternset>
                 </unzip>
               </target>

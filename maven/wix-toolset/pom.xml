@@ -8,13 +8,13 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.9-SNAPSHOT</version>
+    <version>3.9.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.wixtoolset.maven</groupId>
   <artifactId>wix-toolset</artifactId>
-  <version>3.9-SNAPSHOT</version>
+  <version>3.9.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>WiX Toolset Maven</name>
@@ -24,7 +24,7 @@
     <dependency>
       <groupId>org.wixtoolset.maven</groupId>
       <artifactId>wix-bootstrap</artifactId>
-      <version>3.9-SNAPSHOT</version>
+      <version>3.9.2-SNAPSHOT</version>
     </dependency>
   </dependencies>
   

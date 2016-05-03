@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.9-SNAPSHOT</version>
+    <version>3.9.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
@@ -19,7 +19,7 @@
     <dependency>
       <groupId>org.wixtoolset.sdk.nar</groupId>
       <artifactId>dutil</artifactId>
-      <version>3.9-SNAPSHOT</version>
+      <version>3.9.2-SNAPSHOT</version>
       <type>nar</type>
     </dependency>
   </dependencies>
@@ -32,6 +32,13 @@
         <directory>${zip.unpack}/sdk/inc</directory>
         <includes>
           <include>balutil.h</include>
+          <include>balcondition.h</include>
+          <include>balinfo.h</include>
+          <include>balretry.h</include>
+          <include>BalBaseBootstrapperApplication.h</include>
+          <include>IBootstrapperApplication.h</include>
+          <include>IBootstrapperBAFunction.h</include>
+          <include>IBootstrapperEngine.h</include>
         </includes>
       </resource>
       <resource>

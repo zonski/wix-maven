@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
-
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
 
   <groupId>org.wixtoolset</groupId>
   <artifactId>wix-toolset-parent</artifactId>
-  <version>3.9-SNAPSHOT</version>
+  <version>3.9.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>WiX Toolset Maven parent/aggregate</name>
@@ -73,16 +66,23 @@ This is a binary artifact capture.</description>
     <url>https://github.com/zonski/wix-maven/issues</url>
   </issueManagement>
   <!-- Source
-    SCM https://hg.codeplex.com/wix
+    SCM https://github.com/wixtoolset/wix3/tree/wix39r2rtm
     <issueManagement>
-    <system>Sourceforge</system>
-    <url>http://sourceforge.net/p/wix/bugs/</url>
+    <system>GitHub</system>
+    <url>https://github.com/wixtoolset/issues/issues</url>
     </issueManagement>
   -->
-
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+  
   <properties> <!-- The &Build value seems to change daily... -->
     <wix.downloadPath>src/download</wix.downloadPath>
     <wix.downloadFile>${wix.downloadPath}/wix-binaries.zip</wix.downloadFile>
+    <wix.downloadFile.debug>${wix.downloadPath}/wix-debug.zip</wix.downloadFile.debug>
     <zip.unpack>${basedir}/target/unpack</zip.unpack>
   </properties>
 
@@ -112,8 +112,25 @@ This is a binary artifact capture.</description>
             <artifactId>maven-invoker-plugin</artifactId>
             <version>1.9</version>
         </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
       </plugins>
     </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.3</version>
+        <extensions>true</extensions>
+        <configuration>
+          <serverId>ossrh</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 
   <profiles>
@@ -179,7 +196,7 @@ This is a binary artifact capture.</description>
         <module>npanday/Microsoft.Deployment.WindowsInstaller.Package</module>
       </modules>
       <properties>
-        <npanday.test.version>1.4.0-incubating</npanday.test.version> <!-- 1.5.0-incutbation-SNAPSHOT -->
+        <npanday.test.version>1.4.0-incubating</npanday.test.version>
       </properties>
       <build>
         <pluginManagement>
@@ -231,13 +248,14 @@ This is a binary artifact capture.</description>
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1421697&amp;FileTime=130661188723230000&amp;Build=20959</wix.downloadURL>
+	  <!-- d:releaseid="610859" -->
+        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1421697&amp;FileTime=130661188723230000&amp;Build=20999</wix.downloadURL>
+        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1421698&amp;FileTime=130661188723230000&amp;Build=20999</wix.downloadURL.debug>
       </properties>
       <build>
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <version>1.7</version>
             <executions>
               <execution>
                 <id>download and prepare</id>
@@ -279,8 +297,37 @@ This is a binary artifact capture.</description>
                     <mkdir dir="${wix.downloadPath}" />
                     <get src="${wix.downloadURL}" dest="${wix.downloadFile}"
                       usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
+                    <get src="${wix.downloadURL.debug}" dest="${wix.downloadFile.debug}"
+                      usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
                   </target>
                 </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>sonatype-oss-release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
               </execution>
             </executions>
           </plugin>
