@@ -130,6 +130,11 @@
                   <classifier>WixGamingExtension</classifier>
                 </artifact>
                 <artifact>
+                  <file>${zip.unpack}/WixHttpExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixHttpExtension</classifier>
+                </artifact>
+                <artifact>
                   <file>${zip.unpack}/WixIISExtension.dll</file>
                   <type>wixext</type>
                   <classifier>WixIISExtension</classifier>
