@@ -76,6 +76,7 @@
                   <excludes>
                     <exclude>Wix*Extension.dll</exclude>
                     <exclude>Votiv*.dll</exclude>
+					<!-- <exclude>Microsoft.Deployment*.dll</exclude> Unclear on dependency, light seems to need these when linking for burn -->
                   </excludes>
                 </resource>
               </resources>
