@@ -4,7 +4,7 @@
 
   <groupId>org.wixtoolset</groupId>
   <artifactId>wix-toolset-parent</artifactId>
-  <version>4.0.0-SNAPSHOT</version>
+  <version>3.10.2-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>WiX Toolset Maven parent/aggregate</name>
@@ -250,9 +250,9 @@ This is a binary artifact capture.</description>
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-	  <!-- d:releaseid="610859" -->
-        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1421697&amp;FileTime=130661188723230000&amp;Build=20999</wix.downloadURL>
-        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1421698&amp;FileTime=130661188723230000&amp;Build=20999</wix.downloadURL.debug>
+	  <!-- d:releaseid="619491" -->
+        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1540241&amp;FileTime=130977915569570000&amp;Build=21031</wix.downloadURL>
+        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1540242&amp;FileTime=130977915590800000&amp;Build=21031</wix.downloadURL.debug>
       </properties>
       <build>
         <plugins>
