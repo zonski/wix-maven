@@ -74,7 +74,6 @@
                     <include name="sdk/vs*/**/balutil*" />
                   </patternset>
                   <mapper>
-                    <mapper type="regexp" from="^sdk/vs2008/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc9/\2" />
                     <mapper type="regexp" from="^sdk/vs2010/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc10/\2" />
                     <mapper type="regexp" from="^sdk/vs2012/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc11/\2" />
                     <mapper type="regexp" from="^sdk/vs2013/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc12/\2" />
@@ -96,7 +95,7 @@
 					<!-- x86 x64 -->
 					<!-- msvc -->
           <resourcesCopyAOL>false</resourcesCopyAOL>
-          <output>msvc9/balutil</output>
+          <output>msvc10/balutil</output>
           <libraries>
             <library>
               <type>static</type>
