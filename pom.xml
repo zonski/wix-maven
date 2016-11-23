@@ -254,9 +254,9 @@ This is a binary artifact capture.</description>
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-	  <!-- d:releaseid="619491" -->
-        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1540241&amp;FileTime=130977915569570000&amp;Build=21031</wix.downloadURL>
-        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1540242&amp;FileTime=130977915590800000&amp;Build=21031</wix.downloadURL.debug>
+	  <!-- d:releaseid="624906" -->
+        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1587180&amp;FileTime=131118854877130000&amp;Build=21031</wix.downloadURL>
+        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1587181&amp;FileTime=131118854891000000&amp;Build=21031</wix.downloadURL.debug>
       </properties>
       <build>
         <plugins>
