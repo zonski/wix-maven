@@ -105,6 +105,11 @@
                   <classifier>WixBalExtension</classifier>
                 </artifact>
                 <artifact>
+                  <file>${zip.unpack}/WixComPlusExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixComPlusExtension</classifier>
+                </artifact>
+                <artifact>
                   <file>${zip.unpack}/WixDependencyExtension.dll</file>
                   <type>wixext</type>
                   <classifier>WixDependencyExtension</classifier>
@@ -138,6 +143,16 @@
                   <file>${zip.unpack}/WixIISExtension.dll</file>
                   <type>wixext</type>
                   <classifier>WixIISExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixLuxExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixLuxExtension</classifier>
+                </artifact>
+                <artifact>
+                  <file>${zip.unpack}/WixMsmqExtension.dll</file>
+                  <type>wixext</type>
+                  <classifier>WixMsmqExtension</classifier>
                 </artifact>
                 <artifact>
                   <file>${zip.unpack}/WixNetFxExtension.dll</file>
