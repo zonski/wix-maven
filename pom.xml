@@ -148,22 +148,22 @@ This is a binary artifact capture.</description>
         <module>nar/dutil-vc10</module>
         <module>nar/dutil-vc11</module>
         <module>nar/dutil-vc12</module>
-        <module>nar/dutil-vc13</module>
+        <module>nar/dutil-vc14</module>
         <module>nar/balutil</module>
         <module>nar/balutil-vc10</module>
         <module>nar/balutil-vc11</module>
         <module>nar/balutil-vc12</module>
-        <module>nar/balutil-vc13</module>
+        <module>nar/balutil-vc14</module>
         <module>nar/deputil</module>
         <module>nar/deputil-vc10</module>
         <module>nar/deputil-vc11</module>
         <module>nar/deputil-vc12</module>
-        <module>nar/deputil-vc13</module>
+        <module>nar/deputil-vc14</module>
         <module>nar/wcautil</module>
         <module>nar/wcautil-vc10</module>
         <module>nar/wcautil-vc11</module>
         <module>nar/wcautil-vc12</module>
-        <module>nar/wcautil-vc13</module>
+        <module>nar/wcautil-vc14</module>
       </modules>
       <properties>
         <nar.test.version>3.0.0</nar.test.version>

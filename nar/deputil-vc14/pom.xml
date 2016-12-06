@@ -10,14 +10,14 @@
   </parent>
 
   <groupId>org.wixtoolset.sdk.nar</groupId>
-  <artifactId>deputil-vc13</artifactId>
+  <artifactId>deputil-vc14</artifactId>
   <packaging>nar</packaging>
-  <name>WiX DepUtil (vc13)</name>
+  <name>WiX DepUtil (vc14)</name>
 
   <dependencies>
     <dependency>
       <groupId>org.wixtoolset.sdk.nar</groupId>
-      <artifactId>dutil-vc13</artifactId>
+      <artifactId>dutil-vc14</artifactId>
       <version>3.10.3-SNAPSHOT</version>
       <type>nar</type>
     </dependency>
