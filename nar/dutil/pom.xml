@@ -76,6 +76,7 @@
                     <mapper type="regexp" from="^sdk/vs2012/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc11/\2" />
                     <mapper type="regexp" from="^sdk/vs2013/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc12/\2" />
                     <mapper type="regexp" from="^sdk/vs2015/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc14/\2" />
+                    <mapper type="regexp" from="^sdk/vs2017/lib/(.*)/(.*\.lib)" to="sdk/\1/msvc141/\2" />
                   </mapper>
                 </unzip>
               </target>
