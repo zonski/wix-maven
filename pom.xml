@@ -244,15 +244,15 @@ This is a binary artifact capture.</description>
     <profile>
       <id>download</id>
       <!-- To update the source
-      Update the download URL property by finding it on the download page at  http://wixtoolset.org/releases/v3.7/stable
+      Update the download URL property by finding it on the download page at https://github.com/wixtoolset/wix3/releases/
       mvn -N generate-sources -Pdownload -->
       <activation>
         <activeByDefault>false</activeByDefault>
       </activation>
       <properties>
-	  <!-- d:releaseid="624906" -->
-        <wix.downloadURL>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1587180&amp;FileTime=131118854877130000&amp;Build=21031</wix.downloadURL>
-        <wix.downloadURL.debug>http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&amp;DownloadId=1587181&amp;FileTime=131118854891000000&amp;Build=21031</wix.downloadURL.debug>
+	  <!-- https://github.com/wixtoolset/wix3/releases/download/wix311rtm/wix311exe.zip -->
+        <wix.downloadURL>https://github.com/wixtoolset/wix3/releases/download/wix311rtm/wix311-binaries.zip</wix.downloadURL>
+        <wix.downloadURL.debug>https://github.com/wixtoolset/wix3/releases/download/wix311rtm/wix311-debug.zip</wix.downloadURL.debug>
       </properties>
       <build>
         <plugins>
@@ -267,33 +267,6 @@ This is a binary artifact capture.</description>
                 </goals>
                 <configuration>
                   <target name="download">
-                <!--
-                  need a method of getting the download, first to get download 
-                  at all, then more dynamic based on version
-
-                  ie. https://wix.codeplex.com/downloads/get/582220 URL for 3.7
-                  time based page update to POST http://wix.codeplex.com/releases/captureDownload
-                  then redirect to actual download like  http://download-codeplex.sec.s-msft.com/Download/Release?ProjectName=wix&DownloadId=534607&FileTime=129979520837900000&Build=19727
-                  <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath" />
-                  <post to="http://wix.codeplex.com/releases/captureDownload" property="wix.downloadURL" failonerror="true">
-                    <prop name="fileid" value="534607" />
-                    <prop name="clickoncepath" value="" />
-                    <prop name="redirectToAds" value="false" />
-                  </post>
-                  <dependencies>
-                    <dependency>
-                      <groupId>ant-contrib</groupId>
-                      <artifactId>ant-contrib</artifactId>
-                      <version>1.0b3</version>
-                      <exclusions>
-                        <exclusion>
-                          <groupId>ant</groupId>
-                          <artifactId>ant</artifactId>
-                        </exclusion>
-                      </exclusions>
-                    </dependency>
-                  </dependencies>
-                  ${wix.downloadURL} -->
                     <mkdir dir="${wix.downloadPath}" />
                     <get src="${wix.downloadURL}" dest="${wix.downloadFile}" usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
                     <get src="${wix.downloadURL.debug}" dest="${wix.downloadFile.debug}" usetimestamp="true" /> <!-- timestamp check doesn't seem to work, downlaods every time -->
