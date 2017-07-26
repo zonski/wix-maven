@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.10.3</version>
+    <version>3.11.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
   
@@ -49,7 +49,7 @@ cab.Unpack(@"C:\ArchieveDir");
     <dependency>
       <groupId>org.wixtoolset.sdk.npanday</groupId>
       <artifactId>Microsoft.Deployment.Compression</artifactId>
-      <version>3.10.3</version>
+      <version>3.11.0-SNAPSHOT</version>
       <type>dotnet-library</type>
     </dependency>
   </dependencies>

@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.10.3</version>
+    <version>3.11.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
@@ -18,7 +18,7 @@
     <dependency>
       <groupId>org.wixtoolset.sdk.nar</groupId>
       <artifactId>dutil-vc10</artifactId>
-      <version>3.10.3</version>
+      <version>3.11.0-SNAPSHOT</version>
       <type>nar</type>
     </dependency>
   </dependencies>
