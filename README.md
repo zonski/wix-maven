@@ -11,7 +11,7 @@ mvn deploy -Pnar -Pnpanday
 ### Download
 -Pdownload -N  
 Should be run with the -N option to only run on the aggregate build, child projects reference the download location in the parent project.
-Download from CodePlex is not fully automated as the site uses some cookies/reload/redirect and the direct URL seems to change day by day.
+Download from Github https://github.com/wixtoolset/wix3/releases is partly automated, version in URL is not automatically updated to match mvn build.
  
 ### Optional NAR packaging (com.github.maven-nar::3.0.0)
 -Pnar
