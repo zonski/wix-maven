@@ -4,7 +4,7 @@
 
   <groupId>org.wixtoolset</groupId>
   <artifactId>wix-toolset-parent</artifactId>
-  <version>3.11.0</version>
+  <version>3.11.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>WiX Toolset Maven parent/aggregate</name>
@@ -58,7 +58,7 @@ This is a binary artifact capture.</description>
     <url>https://github.com/zonski/wix-maven</url>
     <connection>scm:git:git://github.com/zonski/wix-maven</connection>
     <developerConnection>scm:git:git@github.com:zonski/wix-maven</developerConnection>
-    <tag>wix-toolset-3.11.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
