@@ -7,13 +7,13 @@
   <parent>
     <groupId>org.wixtoolset</groupId>
     <artifactId>wix-toolset-parent</artifactId>
-    <version>3.14.0-SNAPSHOT</version>
+    <version>3.11.2-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.wixtoolset.maven</groupId>
   <artifactId>wix-bootstrap</artifactId>
-  <version>3.14.0-SNAPSHOT</version>
+  <version>3.11.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>WiX Toolset Maven burn bootstrap application</name>
